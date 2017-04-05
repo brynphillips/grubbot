@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var WebClient = require('@slack/client').WebClient
 var app = express();
-var slack = new WebClient(process.env.SLACK_TOKEN);
+var slack = new WebClient(process.env.TOKEN);
 var sibs = [];
 var skipping = [];
 var lunch = [];
@@ -62,15 +62,7 @@ slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and dona
     }
 });
 
-app.use(bodyParser.urlencoded({ extended: false}))
-app.post('/messages', function (req, res) {
-	var response = Object.assign({}, question);
-	var payload = JSON.parse(req.body.payload);
-    var action = payload.actions[0].value;
-    console.log(action);
-
-    switch (action) {
-    	case 'lunch':
+ 
     	  if (lunch.indexOf(payload.user.id) === -1) {
     	  	lunch.push(payload.user.id);
     	  	console.log(lunch);
