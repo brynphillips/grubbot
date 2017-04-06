@@ -96,9 +96,6 @@ app.post('/action', function (req, res) {
     	  break;
     	case 'skipping':
     	  if (skipping.indexOf(payload.user.id) === -1) {
-    	  	if (		 === lunch){
-
-    	  	}
     	  	skipping.push(payload.user.id);
     	  	console.log(skipping);
     	  }
