@@ -110,11 +110,11 @@ app.post('/action', function (req, res) {
 		sibs.push(payload.user.id);	
 	}
 	response.text = "You\'ve helped donate over $" + ((gather.length*15)+(lunch.length*15)+(breakfast.length*15)+(skipping.length*45)) + " to charity."  
-	console.log("Skipping lunch: " + lunch.length);
-	console.log("Skipping gather: " + gather.length);
-	console.log("Skipping breakfast: " + breakfast.length);
-	console.log("Skipping all: " + skipping.length)
-	console.log(req.body);
+	// console.log("Skipping lunch: " + lunch.length);
+	// console.log("Skipping gather: " + gather.length);
+	// console.log("Skipping breakfast: " + breakfast.length);
+	// console.log("Skipping all: " + skipping.length)
+	// console.log(req.body);
 	res.send(response);
 });
 app.listen(8080);
