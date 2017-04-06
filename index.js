@@ -54,7 +54,7 @@ var question = {
 	        }
 	    ]
 	};
-slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and donate the savings to local charities!', question, function(err, res) {
+var botbot = slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and donate the savings to local charities!', question, function(err, res) {
     if (err) {
         console.log('Error:', err);
     } else {
@@ -120,7 +120,7 @@ app.post('/messages', function (req, res) {
 app.listen(8080);
 
 var CronJob = require('cron').CronJob;
-new CronJob('30 * * * * *', postMessage, null, true, 'America/Los_Angeles');
+new CronJob('30 * * * * *', botbot, null, true, 'America/Los_Angeles');
 
 CronJob();
 
