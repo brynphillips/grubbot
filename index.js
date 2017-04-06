@@ -62,7 +62,15 @@ slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and dona
     }
 });
 
- 
+app.use(bodyParser.urlencoded({ extended: false}))
+app.post('/messages', function (req, res) {
+	var response = Object.assign({}, question);
+	var payload = JSON.parse(req.body.payload);
+    var action = payload.actions[0].value;
+    console.log(action);
+
+    switch (action) {
+    	case 'lunch':
     	  if (lunch.indexOf(payload.user.id) === -1) {
     	  	lunch.push(payload.user.id);
     	  	console.log(lunch);
@@ -88,7 +96,9 @@ slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and dona
     	  break;
     	case 'skipping':
     	  if (skipping.indexOf(payload.user.id) === -1) {
-    	  	if (payload.user.id === lunch)
+    	  	if (		 === lunch){
+
+    	  	}
     	  	skipping.push(payload.user.id);
     	  	console.log(skipping);
     	  }
@@ -112,7 +122,7 @@ slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and dona
 });
 app.listen(8080);
 
-
+setTimeout(function() {slack.chat.postMessage()}, 1000);
 
 
 
