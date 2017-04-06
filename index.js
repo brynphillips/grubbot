@@ -120,7 +120,7 @@ app.post('/messages', function (req, res) {
 app.listen(8080);
 
 var CronJob = require('cron').CronJob;
-new CronJob('30 * * * * *', slack.chat.postMessage, null, true, 'America/Los_Angeles');
+new CronJob('30 * * * * *', postMessage, null, true, 'America/Los_Angeles');
 
 CronJob();
 
