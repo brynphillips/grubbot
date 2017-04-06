@@ -63,7 +63,7 @@ slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and dona
 });
 
 app.use(bodyParser.urlencoded({ extended: false}))
-app.post('/action', function (req, res) {
+app.post('/messages', function (req, res) {
 	var response = Object.assign({}, question);
 	var payload = JSON.parse(req.body.payload);
     var action = payload.actions[0].value;
@@ -120,9 +120,9 @@ app.post('/action', function (req, res) {
 app.listen(8080);
 
 var CronJob = require('cron').CronJob;
-new CronJob('30 * * * * *', slack.chat.postMessage(), null, true, 'America/Los_Angeles');
+new CronJob('30 * * * * *', postMessage(), null, true, 'America/Los_Angeles');
 
-CronJobO();
+CronJob();
 
 
 
