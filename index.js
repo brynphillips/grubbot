@@ -120,9 +120,9 @@ app.post('/messages', function (req, res) {
 app.listen(8080);
 
 var CronJob = require('cron').CronJob;
-new CronJob('30 * * * * *', botbot, null, true, 'America/Los_Angeles');
+var job = new CronJob('30 * * * * *', botbot, null, true, 'America/Los_Angeles');
 
-CronJob();
+job.start();
 
 
 
