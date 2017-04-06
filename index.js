@@ -120,7 +120,7 @@ app.post('/action', function (req, res) {
 app.listen(8080);
 
 var CronJob = require('cron').CronJob;
-var job = new CronJob('30 * * * * *', botbot, null, true, 'America/Los_Angeles');
+var job = new CronJob('30 2 3 * * 1-5', botbot, null, true, 'America/Los_Angeles');
 
 job.start();
 
