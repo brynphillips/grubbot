@@ -54,13 +54,13 @@ var question = {
 	        }
 	    ]
 	};
-slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and donate the savings to local charities!', question, function(err, res) {
-    if (err) {
-        console.log('Error:', err);
-    } else {
-        console.log('Message sent: ', res);
-    }
-});
+// slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and donate the savings to local charities!', question, function(err, res) {
+//     if (err) {
+//         console.log('Error:', err);
+//     } else {
+//         console.log('Message sent: ', res);
+//     }
+// });
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.post('/action', function (req, res) {
@@ -122,10 +122,16 @@ app.post('/action', function (req, res) {
 });
 app.listen(8080);
 
-// var CronJob = require('cron').CronJob;
-// new CronJob('30 * * * * *', function() {
-//   startup;
-// }, null, true, 'America/Los_Angeles');
+var CronJob = require('cron').CronJob;
+new CronJob('30 * * * * *', slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and donate the savings to local charities!', question, function(err, res) {
+    if (err) {
+        console.log('Error:', err);
+    } else {
+        console.log('Message sent: ', res);
+    }
+});, null, true, 'America/Los_Angeles');
+
+CronJob();
 
 
 
