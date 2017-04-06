@@ -122,9 +122,12 @@ app.post('/messages', function (req, res) {
 });
 app.listen(8080);
 
-setTimeout(function() {slack.chat.postMessage()}, 1000);
+function postMessage() {
+    slack.postMessage(slack.chat.postMessage);
+}
 
-
+// post a message every 5 minutes (5 mins * 60 seconds * 1000 milliseconds)
+setInterval(postMessage, 5 * 60 * 1000);
 
 
 
