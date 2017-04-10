@@ -64,6 +64,7 @@ var botbot = slack.chat.postMessage('#general', 'I\'m here to help reduce food w
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.post('/action', function (req, res) {
+	console.log('hello world')
 	var response = Object.assign({}, question);
 	var payload = JSON.parse(req.body.payload);
     var action = payload.actions[0].value;
@@ -74,7 +75,7 @@ app.post('/action', function (req, res) {
     	  if (lunch.indexOf(payload.user.id) === -1) {
     	  	lunch.push(payload.user.id);
     	  	console.log(lunch);
-    	  }
+    	  }	
     	  break;
     	case 'gather':
     	  if (gather.indexOf(payload.user.id) === -1) {
@@ -110,14 +111,14 @@ app.post('/action', function (req, res) {
 		sibs.push(payload.user.id);	
 	}
 	response.text = "You\'ve helped donate over $" + ((gather.length*15)+(lunch.length*15)+(breakfast.length*15)+(skipping.length*45)) + " to charity."  
-	// console.log("Skipping lunch: " + lunch.length);
-	// console.log("Skipping gather: " + gather.length);
-	// console.log("Skipping breakfast: " + breakfast.length);
-	// console.log("Skipping all: " + skipping.length)
-	// console.log(req.body);
+	console.log("Skipping lunch: " + lunch.length);
+	console.log("Skipping gather: " + gather.length);
+	console.log("Skipping breakfast: " + breakfast.length);
+	console.log("Skipping all: " + skipping.length)
+	console.log(req.body);
 	res.send(response);
 });
-app.listen(8080);
+// app.listen(8080);
 
 var CronJob = require('cron').CronJob;
 var job = new CronJob('30 2 3 * * 1-5', botbot, null, true, 'America/Los_Angeles');
