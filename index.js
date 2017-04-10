@@ -1,7 +1,7 @@
 var express = require('express'); 
 var bodyParser = require('body-parser')
 var WebClient = require('@slack/client').WebClient
-var app = express();
+// var app = express();
 var slack = new WebClient(process.env.SLACK_TOKEN);
 var sibs = [];
 var skipping = [];
@@ -54,6 +54,7 @@ var question = {
 	        }
 	    ]
 	};
+
 var botbot = slack.chat.postMessage('#general', 'I\'m here to help reduce food waste and donate the savings to local charities!', question, function(err, res) {
     if (err) {
         console.log('Error:', err);
@@ -62,46 +63,67 @@ var botbot = slack.chat.postMessage('#general', 'I\'m here to help reduce food w
     }
 });
 
-app.use(bodyParser.urlencoded({ extended: false}))
-app.post('/action', function (req, res) {
-	console.log('hello world')
-	var response = Object.assign({}, question);
-	var payload = JSON.parse(req.body.payload);
-    var action = payload.actions[0].value;
-    console.log(action);
 
-    switch (action) {
-    	case 'lunch':
-    	  if (lunch.indexOf(payload.user.id) === -1) {
-    	  	lunch.push(payload.user.id);
-    	  	console.log(lunch);
-    	  }	
-    	  break;
-    	case 'gather':
-    	  if (gather.indexOf(payload.user.id) === -1) {
-    	  	gather.push(payload.user.id);
-    	  	console.log(gather);
-    	  }
-    	  break;
-    	case 'breakfast':
-    	  if (breakfast.indexOf(payload.user.id) === -1) {
-    	  	breakfast.push(payload.user.id);
-    	  	console.log(breakfast);
-    	  }
-    	  break;
-    	case 'both':
-    	  if (both.indexOf(payload.user.id) === -1) {
-    	  	both.push(payload.user.id);
-    	  	console.log(both);
-    	  }
-    	  break;
-    	case 'skipping':
-    	  if (skipping.indexOf(payload.user.id) === -1) {
-    	  	skipping.push(payload.user.id);
-    	  	console.log(skipping);
-    	  }
-    	  break;
-    }
+// Initialize using verification token from environment variables
+const createSlackEventAdapter = require('@slack/events-api').createSlackEventAdapter;
+const slackEvents = createSlackEventAdapter(process.env.SLACK_TOKEN);
+const port = process.env.PORT || 8080;
+
+// Attach listeners to events by Slack Event "type". See: https://api.slack.com/events/message.im
+slackEvents.on('message', (event) => {
+  console.log(`Received a message event: user ${event.user} in channel ${event.channel} says ${event.text}`);
+});
+
+// Handle errors (see `errorCodes` export)
+slackEvents.on('error', console.error);
+
+// Start a basic HTTP server
+slackEvents.start(port).then(() => {
+  console.log(`server listening on port ${port}`);
+});
+	
+
+
+
+
+	// console.log('hello world')
+	// var response = Object.assign({}, question);
+	// var payload = JSON.parse(req.body.payload);
+ //    var action = payload.actions[0].value;
+ //    console.log(action);
+
+ //    switch (action) {
+ //    	case 'lunch':
+ //    	  if (lunch.indexOf(payload.user.id) === -1) {
+ //    	  	lunch.push(payload.user.id);
+ //    	  	console.log(lunch);
+ //    	  }	
+ //    	  break;
+ //    	case 'gather':
+ //    	  if (gather.indexOf(payload.user.id) === -1) {
+ //    	  	gather.push(payload.user.id);
+ //    	  	console.log(gather);
+ //    	  }
+ //    	  break;
+ //    	case 'breakfast':
+ //    	  if (breakfast.indexOf(payload.user.id) === -1) {
+ //    	  	breakfast.push(payload.user.id);
+ //    	  	console.log(breakfast);
+ //    	  }
+ //    	  break;
+ //    	case 'both':
+ //    	  if (both.indexOf(payload.user.id) === -1) {
+ //    	  	both.push(payload.user.id);
+ //    	  	console.log(both);
+ //    	  }
+ //    	  break;
+ //    	case 'skipping':
+ //    	  if (skipping.indexOf(payload.user.id) === -1) {
+ //    	  	skipping.push(payload.user.id);
+ //    	  	console.log(skipping);
+ //    	  }
+ //    	  break;
+ //    }
 	// check value that is being returned 
 	// case switch -> to match value
 	// push to whatever array matches the value
@@ -117,7 +139,7 @@ app.post('/action', function (req, res) {
 	console.log("Skipping all: " + skipping.length)
 	console.log(req.body);
 	res.send(response);
-});
+
 // app.listen(8080);
 
 var CronJob = require('cron').CronJob;
