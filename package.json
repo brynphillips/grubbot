@@ -10,9 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "@slack/client": "^3.9.0",
+    "@slack/events-api": "^1.0.1",
     "body-parser": "^1.17.1",
     "cron": "^1.2.1",
-    "express": "^4.15.2",
-    "slapp": "^2.2.1"
+    "express": "^4.15.2"
   }
 }
