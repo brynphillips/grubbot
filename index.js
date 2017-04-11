@@ -140,7 +140,7 @@ slackEvents.start(port).then(() => {
 	// console.log(req.body);
 	// res.send(response);
 
-// app.listen(8080);
+app.listen(8080);
 
 var CronJob = require('cron').CronJob;
 var job = new CronJob('30 2 3 * * 1-5', botbot, null, true, 'America/Los_Angeles');
