@@ -124,11 +124,11 @@ var botbot = slack.chat.postMessage('#general', 'I\'m here to help reduce food w
     	  }
     	  break;
     }
-	check value that is being returned 
-	case switch -> to match value
-	push to whatever array matches the value
+	// check value that is being returned 
+	// case switch -> to match value
+	// push to whatever array matches the value
 
-	check if user id already in array
+	// check if user id already in array
 	if (sibs.indexOf(payload.user.id) === -1) {
 		sibs.push(payload.user.id);	
 	}
