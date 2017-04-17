@@ -86,59 +86,59 @@ var botbot = slack.chat.postMessage('#general', 'I\'m here to help reduce food w
 
 
 
-	// console.log('hello world')
-	// var response = Object.assign({}, question);
-	// var payload = JSON.parse(req.body.payload);
- //    var action = payload.actions[0].value;
- //    console.log(action);
+	console.log('hello world')
+	var response = Object.assign({}, question);
+	var payload = JSON.parse(req.body.payload);
+    var action = payload.actions[0].value;
+    console.log(action);
 
- //    switch (action) {
- //    	case 'lunch':
- //    	  if (lunch.indexOf(payload.user.id) === -1) {
- //    	  	lunch.push(payload.user.id);
- //    	  	console.log(lunch);
- //    	  }	
- //    	  break;
- //    	case 'gather':
- //    	  if (gather.indexOf(payload.user.id) === -1) {
- //    	  	gather.push(payload.user.id);
- //    	  	console.log(gather);
- //    	  }
- //    	  break;
- //    	case 'breakfast':
- //    	  if (breakfast.indexOf(payload.user.id) === -1) {
- //    	  	breakfast.push(payload.user.id);
- //    	  	console.log(breakfast);
- //    	  }
- //    	  break;
- //    	case 'both':
- //    	  if (both.indexOf(payload.user.id) === -1) {
- //    	  	both.push(payload.user.id);
- //    	  	console.log(both);
- //    	  }
- //    	  break;
- //    	case 'skipping':
- //    	  if (skipping.indexOf(payload.user.id) === -1) {
- //    	  	skipping.push(payload.user.id);
- //    	  	console.log(skipping);
- //    	  }
- //    	  break;
- //    }
-	// check value that is being returned 
-	// case switch -> to match value
-	// push to whatever array matches the value
+    switch (action) {
+    	case 'lunch':
+    	  if (lunch.indexOf(payload.user.id) === -1) {
+    	  	lunch.push(payload.user.id);
+    	  	console.log(lunch);
+    	  }	
+    	  break;
+    	case 'gather':
+    	  if (gather.indexOf(payload.user.id) === -1) {
+    	  	gather.push(payload.user.id);
+    	  	console.log(gather);
+    	  }
+    	  break;
+    	case 'breakfast':
+    	  if (breakfast.indexOf(payload.user.id) === -1) {
+    	  	breakfast.push(payload.user.id);
+    	  	console.log(breakfast);
+    	  }
+    	  break;
+    	case 'both':
+    	  if (both.indexOf(payload.user.id) === -1) {
+    	  	both.push(payload.user.id);
+    	  	console.log(both);
+    	  }
+    	  break;
+    	case 'skipping':
+    	  if (skipping.indexOf(payload.user.id) === -1) {
+    	  	skipping.push(payload.user.id);
+    	  	console.log(skipping);
+    	  }
+    	  break;
+    }
+	check value that is being returned 
+	case switch -> to match value
+	push to whatever array matches the value
 
-	// check if user id already in array
-	// if (sibs.indexOf(payload.user.id) === -1) {
-	// 	sibs.push(payload.user.id);	
-	// }
-	// response.text = "You\'ve helped donate over $" + ((gather.length*15)+(lunch.length*15)+(breakfast.length*15)+(skipping.length*45)) + " to charity."  
-	// console.log("Skipping lunch: " + lunch.length);
-	// console.log("Skipping gather: " + gather.length);
-	// console.log("Skipping breakfast: " + breakfast.length);
-	// console.log("Skipping all: " + skipping.length)
-	// console.log(req.body);
-	// res.send(response);
+	check if user id already in array
+	if (sibs.indexOf(payload.user.id) === -1) {
+		sibs.push(payload.user.id);	
+	}
+	response.text = "You\'ve helped donate over $" + ((gather.length*15)+(lunch.length*15)+(breakfast.length*15)+(skipping.length*45)) + " to charity."  
+	console.log("Skipping lunch: " + lunch.length);
+	console.log("Skipping gather: " + gather.length);
+	console.log("Skipping breakfast: " + breakfast.length);
+	console.log("Skipping all: " + skipping.length)
+	console.log(req.body);
+	res.send(response);
 
 // app.listen(8080);
 
